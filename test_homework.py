@@ -7,7 +7,6 @@ def test_dark_theme_by_time():
     """
     current_time = time(hour=23)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
-    is_dark_theme = None
     if time(hour=6) < current_time < time(hour=22):
         is_dark_theme = False
     else:
@@ -26,7 +25,6 @@ def test_dark_theme_by_time_and_user_choice():
     """
     current_time = time(hour=6)
     dark_theme_enabled_by_user = None
-    is_dark_theme = None
     # TODO переключите темную тему в зависимости от времени суток,
     #  но учтите что темная тема может быть включена вручную
 
@@ -56,8 +54,6 @@ def test_find_suitable_user():
 
     # TODO найдите пользователя с именем "Olga"
     suitable_users = []
-    #   users.sort(key=lambda user: user["age"])
-    # pprint(users)
 
     for user in users:
         if user["name"] == "Olga":
@@ -91,6 +87,7 @@ def test_find_suitable_user():
 def translator_func_and_args(func, *args):
     name = func.__name__.replace('_', ' ').title()
     ar = (", ".join(args))
+    print(name + " " + "[" + ar + "]")
     return (name + " " + "[" + ar + "]")
 
 def test_readable_function():
