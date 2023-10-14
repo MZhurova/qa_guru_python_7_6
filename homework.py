@@ -1,4 +1,5 @@
 from datetime import time
+from pprint import pprint
 
 
 def test_dark_theme_by_time():
@@ -55,11 +56,23 @@ def test_find_suitable_user():
     ]
 
     # TODO найдите пользователя с именем "Olga"
-    suitable_users = None
+    suitable_users = []
+    #   users.sort(key=lambda user: user["age"])
+    # pprint(users)
+
+    for user in users:
+        if user["name"] == "Olga":
+            suitable_users = user
+
     assert suitable_users == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
-    suitable_users = None
+    suitable_users = []
+
+    for user in users:
+        if user["age"] < 20:
+            suitable_users.append(user)
+
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
@@ -76,6 +89,10 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
+def translator_func_and_args(func, *args):
+    name = func.__name__.replace('_', ' ').title()
+    ar = (", ".join(args))
+    return (name + " " + "[" + ar + "]")
 
 def test_readable_function():
     open_browser(browser_name="Chrome")
@@ -84,15 +101,15 @@ def test_readable_function():
 
 
 def open_browser(browser_name):
-    actual_result = None
+    actual_result = translator_func_and_args(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = None
+    actual_result = translator_func_and_args(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
+    actual_result = translator_func_and_args(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
